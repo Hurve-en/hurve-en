@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Convert source-prepped.png into a monochrome, self-typing ASCII SVG.
 
-GitHub strips <script>/inline CSS in READMEs but plays SMIL animation inside an
-SVG loaded via <img>, so all motion lives in the SVG. The portrait prints once
-(row-by-row left-to-right wipe with a block cursor) and freezes.
+Reveal technique: every text row is covered by a background-coloured rectangle
+whose left edge slides right (x grows, width shrinks), uncovering the text.
+This only animates plain <rect> x/width, which every browser supports.
 
 Usage: python scripts/make_ascii_svg.py [--invert] [--cols 100]
 """
@@ -20,6 +20,7 @@ RAMP = " .`:-=+*cs#%@"  # bright (sparse) -> dark (dense); leading space = blank
 CW, LH, FONT = 5.0, 9.0, 8.4  # char cell width/height and font size (px)
 PAD = 14
 FG, BG, BORDER = "#c9d1d9", "#0d1117", "#30363d"
+ROW_STAGGER, ROW_DUR = 0.06, 0.5  # seconds
 
 
 def main() -> int:
@@ -50,24 +51,30 @@ def main() -> int:
         f'<g transform="translate({PAD},{PAD})" fill="{FG}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="{FONT}">',
     ]
     for i, line in enumerate(lines):
+        if not line.strip():
+            continue
         y = i * LH
-        begin, dur = i * 0.06, 0.5
+        begin = i * ROW_STAGGER
+        end = begin + ROW_DUR
+        # 1) the text, always present
         parts.append(
-            f'<clipPath id="r{i}"><rect x="0" y="{y:g}" width="0" height="{LH:g}">'
-            f'<animate attributeName="width" from="0" to="{text_w:g}" dur="{dur}s" begin="{begin:.2f}s" fill="freeze"/>'
-            f"</rect></clipPath>"
+            f'<text x="0" y="{y + LH - 2:g}" textLength="{text_w:g}" lengthAdjust="spacing" '
+            f'xml:space="preserve" style="white-space:pre">{escape(line)}</text>'
         )
-        if line.strip():
-            parts.append(
-                f'<text x="0" y="{y + LH - 2:g}" textLength="{text_w:g}" lengthAdjust="spacing" '
-                f'xml:space="preserve" style="white-space:pre" clip-path="url(#r{i})">{escape(line)}</text>'
-            )
-            parts.append(
-                f'<rect x="0" y="{y:g}" width="{CW:g}" height="{LH - 1:g}" opacity="0">'
-                f'<set attributeName="opacity" to="1" begin="{begin:.2f}s"/>'
-                f'<animate attributeName="x" from="0" to="{text_w - CW:g}" dur="{dur}s" begin="{begin:.2f}s" fill="freeze"/>'
-                f'<set attributeName="opacity" to="0" begin="{begin + dur:.2f}s" fill="freeze"/></rect>'
-            )
+        # 2) the cover: fully covers the row at first, then its left edge slides right
+        parts.append(
+            f'<rect x="0" y="{y:g}" width="{text_w:g}" height="{LH:g}" fill="{BG}">'
+            f'<animate attributeName="x" from="0" to="{text_w:g}" dur="{ROW_DUR}s" begin="{begin:.2f}s" fill="freeze"/>'
+            f'<animate attributeName="width" from="{text_w:g}" to="0" dur="{ROW_DUR}s" begin="{begin:.2f}s" fill="freeze"/>'
+            f"</rect>"
+        )
+        # 3) the block cursor riding the reveal edge, gone when the row is done
+        parts.append(
+            f'<rect x="0" y="{y:g}" width="{CW:g}" height="{LH - 1:g}" opacity="0">'
+            f'<set attributeName="opacity" to="1" begin="{begin:.2f}s"/>'
+            f'<animate attributeName="x" from="0" to="{text_w - CW:g}" dur="{ROW_DUR}s" begin="{begin:.2f}s" fill="freeze"/>'
+            f'<set attributeName="opacity" to="0" begin="{end:.2f}s" fill="freeze"/></rect>'
+        )
     parts += ["</g>", "</svg>"]
 
     Path(args.out).write_text("\n".join(parts), encoding="utf-8")
