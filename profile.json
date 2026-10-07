@@ -1,0 +1,17 @@
+{
+  "username": "Hurve-en",
+  "handle": "hurveen",
+  "card": {
+    "title": "hurveen@github",
+    "rows": [
+      ["Now", "3rd-year CS student"],
+      ["Aim", "Full-stack -> senior engineer"],
+      ["Stack", "Supabase, Next.js, Expo, TypeScript"],
+      ["", "JavaScript, Figma, PHP, C++, Python"],
+      ["", "PostgreSQL, MySQL, DBeaver, Docker"],
+      ["", "Drizzle, Prisma, Node/Express"],
+      ["Auth", "JWT, role-based middleware"],
+      ["Learning", "React, Next.js, Expo, AI Engineering"]
+    ]
+  }
+}

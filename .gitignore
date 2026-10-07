@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.DS_Store
+# raw + prepped face photos stay local; only the generated SVGs get committed
+source-photo.*
+source-prepped.png

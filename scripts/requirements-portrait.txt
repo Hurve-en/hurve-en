@@ -1,0 +1,7 @@
+# Local-only: run when you change your photo. NOT used by CI.
+pillow
+numpy
+opencv-python-headless
+# Optional background removal (pulls onnxruntime + downloads a ~170MB model on first run).
+# Skip it and use `--no-rembg` with a plain-background photo if you want a light install.
+rembg
