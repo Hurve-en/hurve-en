@@ -106,7 +106,7 @@
 <rect class="d" style="animation-delay:0.180s" x="220" y="89" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.192s" x="220" y="104" width="12" height="12" rx="3" fill="#006d32"/>
 <rect class="d" style="animation-delay:0.204s" x="220" y="119" width="12" height="12" rx="3" fill="#006d32"/>
-<rect class="d" style="animation-delay:0.216s" x="220" y="134" width="12" height="12" rx="3" fill="#39d353"/>
+<rect class="d" style="animation-delay:0.216s" x="220" y="134" width="12" height="12" rx="3" fill="#26a641"/>
 <rect class="d" style="animation-delay:0.156s" x="235" y="44" width="12" height="12" rx="3" fill="#006d32"/>
 <rect class="d" style="animation-delay:0.168s" x="235" y="59" width="12" height="12" rx="3" fill="#006d32"/>
 <rect class="d" style="animation-delay:0.180s" x="235" y="74" width="12" height="12" rx="3" fill="#006d32"/>
@@ -141,7 +141,7 @@
 <rect class="d" style="animation-delay:0.240s" x="295" y="89" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.252s" x="295" y="104" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.264s" x="295" y="119" width="12" height="12" rx="3" fill="#0e4429"/>
-<rect class="d" style="animation-delay:0.276s" x="295" y="134" width="12" height="12" rx="3" fill="#69f0a0"/>
+<rect class="d" style="animation-delay:0.276s" x="295" y="134" width="12" height="12" rx="3" fill="#39d353"/>
 <rect class="d" style="animation-delay:0.216s" x="310" y="44" width="12" height="12" rx="3" fill="#39d353"/>
 <rect class="d" style="animation-delay:0.228s" x="310" y="59" width="12" height="12" rx="3" fill="#39d353"/>
 <rect class="d" style="animation-delay:0.240s" x="310" y="74" width="12" height="12" rx="3" fill="#0e4429"/>
@@ -162,7 +162,7 @@
 <rect class="d" style="animation-delay:0.276s" x="340" y="89" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.288s" x="340" y="104" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.300s" x="340" y="119" width="12" height="12" rx="3" fill="#0e4429"/>
-<rect class="d" style="animation-delay:0.312s" x="340" y="134" width="12" height="12" rx="3" fill="#39d353"/>
+<rect class="d" style="animation-delay:0.312s" x="340" y="134" width="12" height="12" rx="3" fill="#26a641"/>
 <rect class="d" style="animation-delay:0.252s" x="355" y="44" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.264s" x="355" y="59" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.276s" x="355" y="74" width="12" height="12" rx="3" fill="#0e4429"/>
@@ -344,7 +344,7 @@
 <rect class="d" style="animation-delay:0.588s" x="730" y="89" width="12" height="12" rx="3" fill="#161b22"/>
 <rect class="d" style="animation-delay:0.600s" x="730" y="104" width="12" height="12" rx="3" fill="#161b22"/>
 <rect class="d" style="animation-delay:0.612s" x="730" y="119" width="12" height="12" rx="3" fill="#006d32"/>
-<rect class="d" style="animation-delay:0.624s" x="730" y="134" width="12" height="12" rx="3" fill="#39d353"/>
+<rect class="d" style="animation-delay:0.624s" x="730" y="134" width="12" height="12" rx="3" fill="#26a641"/>
 <rect class="d" style="animation-delay:0.564s" x="745" y="44" width="12" height="12" rx="3" fill="#26a641"/>
 <rect class="d" style="animation-delay:0.576s" x="745" y="59" width="12" height="12" rx="3" fill="#26a641"/>
 <rect class="d" style="animation-delay:0.588s" x="745" y="74" width="12" height="12" rx="3" fill="#006d32"/>
@@ -362,7 +362,7 @@
 <rect class="d" style="animation-delay:0.588s" x="775" y="44" width="12" height="12" rx="3" fill="#161b22"/>
 <rect class="d" style="animation-delay:0.600s" x="775" y="59" width="12" height="12" rx="3" fill="#161b22"/>
 <rect class="d" style="animation-delay:0.612s" x="775" y="74" width="12" height="12" rx="3" fill="#006d32"/>
-<rect class="d" style="animation-delay:0.624s" x="775" y="89" width="12" height="12" rx="3" fill="#39d353"/>
+<rect class="d" style="animation-delay:0.624s" x="775" y="89" width="12" height="12" rx="3" fill="#26a641"/>
 <rect class="d" style="animation-delay:0.636s" x="775" y="104" width="12" height="12" rx="3" fill="#26a641"/>
 <rect class="d" style="animation-delay:0.648s" x="775" y="119" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.660s" x="775" y="134" width="12" height="12" rx="3" fill="#0e4429"/>
@@ -378,10 +378,10 @@
 <rect class="d" style="animation-delay:0.636s" x="805" y="74" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.648s" x="805" y="89" width="12" height="12" rx="3" fill="#0e4429"/>
 <rect class="d" style="animation-delay:0.660s" x="805" y="104" width="12" height="12" rx="3" fill="#006d32"/>
-<rect class="d" style="animation-delay:0.672s" x="805" y="119" width="12" height="12" rx="3" fill="#39d353"/>
+<rect class="d" style="animation-delay:0.672s" x="805" y="119" width="12" height="12" rx="3" fill="#26a641"/>
 <rect class="d" style="animation-delay:0.684s" x="805" y="134" width="12" height="12" rx="3" fill="#0e4429"/>
-<rect class="d" style="animation-delay:0.624s" x="820" y="44" width="12" height="12" rx="3" fill="#39d353"/>
-<text x="40" y="173" style="font-size:12px">898 contributions in the last year · current streak 20d · longest 213d</text>
+<rect class="d" style="animation-delay:0.624s" x="820" y="44" width="12" height="12" rx="3" fill="#69f0a0"/>
+<text x="40" y="173" style="font-size:12px">923 contributions in the last year · current streak 20d · longest 213d</text>
 <text x="666" y="173">Less</text>
 <rect x="696" y="163" width="12" height="12" rx="3" fill="#161b22"/>
 <rect x="712" y="163" width="12" height="12" rx="3" fill="#0e4429"/>
@@ -390,5 +390,5 @@
 <rect x="760" y="163" width="12" height="12" rx="3" fill="#39d353"/>
 <rect x="776" y="163" width="12" height="12" rx="3" fill="#69f0a0"/>
 <text x="796" y="173">More</text>
-<text x="40" y="193" style="opacity:.7">last synced 2026-10-25 06:48 UTC</text>
+<text x="40" y="193" style="opacity:.7">last synced 2026-10-25 11:38 UTC</text>
 </svg>
