@@ -5,7 +5,7 @@ Boxes slide in diagonally once on load (CSS keyframes, fill-mode both) and then
 freeze; no looping. Output: contrib-heatmap.svg
 """
 import json
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -32,7 +32,7 @@ def main() -> int:
 
     grid_w = weeks * PITCH - GAP
     x0 = max(LEFT, (W - grid_w) // 2)
-    height = TOP + 7 * PITCH + 56
+    height = TOP + 7 * PITCH + 76
 
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {height}" width="{W}" height="{height}" role="img" aria-label="Contribution heatmap">',
@@ -75,6 +75,9 @@ def main() -> int:
     for i, col in enumerate(PALETTE):
         out.append(f'<rect x="{lx + 30 + i * (CELL + 4)}" y="{fy - 10}" width="{CELL}" height="{CELL}" rx="3" fill="{col}"/>')
     out.append(f'<text x="{lx + 30 + len(PALETTE) * (CELL + 4) + 4}" y="{fy}">More</text>')
+    # proof the daily job is alive: when this file was last regenerated
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    out.append(f'<text x="{x0}" y="{fy + 20}" style="opacity:.7">last synced {stamp}</text>')
     out.append("</svg>")
 
     (ROOT / "contrib-heatmap.svg").write_text("\n".join(out), encoding="utf-8")

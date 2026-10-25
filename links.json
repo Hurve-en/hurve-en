@@ -1,0 +1,9 @@
+{
+  "tagline": "CS student · Aspiring full-stack engineer",
+  "links": [
+    { "label": "GitHub",    "value": "Hurve-en",  "url": "https://github.com/Hurve-en", "color": "#238636" },
+    { "label": "Portfolio", "value": "",          "url": "", "color": "#1f6feb" },
+    { "label": "LinkedIn",  "value": "",          "url": "", "color": "#0a66c2" },
+    { "label": "Email",     "value": "",          "url": "", "color": "#d1495b" }
+  ]
+}

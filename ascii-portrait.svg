@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 578 721" width="578" height="721" role="img" aria-label="ASCII portrait">
-<rect width="578" height="721" rx="12" fill="#0d1117" stroke="#30363d"/>
-<g transform="translate(14,14)" fill="#c9d1d9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="8.4">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 880" width="840" height="880" role="img" aria-label="ASCII portrait">
+<rect width="840" height="880" rx="16" fill="#0d1117" stroke="#30363d" stroke-width="2"/>
+<path d="M0 44H840" stroke="#30363d" stroke-width="2"/>
+<path d="M0 828H840" stroke="#30363d" stroke-width="2"/>
+<circle cx="26" cy="22" r="6" fill="#ff5f56"/><circle cx="46" cy="22" r="6" fill="#ffbd2e"/><circle cx="66" cy="22" r="6" fill="#27c93f"/>
+<text x="420.0" y="28" text-anchor="middle" fill="#8b949e" font-size="15" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">hurveen@github: ~$ ./portrait.sh</text>
+<text x="28" y="861" font-size="16" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" fill="#8b949e">hurveen@github:~$ whoami <tspan fill="#e6edf3" font-weight="700">Hurveen</tspan></text>
+<g transform="translate(131.11,72.00) scale(1.0505)" fill="#c9d1d9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="8.4">
 <text x="0" y="34" textLength="550" lengthAdjust="spacing" xml:space="preserve" style="white-space:pre">                                            .`:::::-:`::`.                                                    </text>
 <rect x="0" y="27" width="550" height="9" fill="#0d1117"><animate attributeName="x" from="0" to="550" dur="0.5s" begin="0.18s" fill="freeze"/><animate attributeName="width" from="550" to="0" dur="0.5s" begin="0.18s" fill="freeze"/></rect>
 <rect x="0" y="27" width="5" height="8" opacity="0"><set attributeName="opacity" to="1" begin="0.18s"/><animate attributeName="x" from="0" to="545" dur="0.5s" begin="0.18s" fill="freeze"/><set attributeName="opacity" to="0" begin="0.68s" fill="freeze"/></rect>

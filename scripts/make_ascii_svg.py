@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""Convert source-prepped.png into a monochrome, self-typing ASCII SVG.
+"""Convert source-prepped.png into a framed, self-typing ASCII portrait SVG.
+
+Output is an 840x880 terminal window (title bar, portrait, whoami footer), the
+same canvas as stats.svg, so the two line up when shown side by side.
 
 Reveal technique: every text row is covered by a background-coloured rectangle
-whose left edge slides right (x grows, width shrinks), uncovering the text.
-This only animates plain <rect> x/width, which every browser supports.
+whose left edge slides right, uncovering the text. Only plain <rect> x/width are
+animated, which every browser supports (an earlier clipPath version did not
+work in Safari).
 
-Usage: python scripts/make_ascii_svg.py [--invert] [--cols 100]
+Usage: python scripts/make_ascii_svg.py [--invert] [--cols 110]
 """
 import argparse
 import json
@@ -17,19 +21,25 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 RAMP = " .`:-=+*cs#%@"  # bright (sparse) -> dark (dense); leading space = blank
-CW, LH, FONT = 5.0, 9.0, 8.4  # char cell width/height and font size (px)
-PAD = 14
-FG, BG, BORDER = "#c9d1d9", "#0d1117", "#30363d"
+CW, LH, FONT = 5.0, 9.0, 8.4  # char cell width/height and font size of the raw art
+W, H = 840, 880
+BAR_TOP, FOOT_H, PAD = 44, 52, 28
+FG, BG, BORDER, DIM = "#c9d1d9", "#0d1117", "#30363d", "#8b949e"
 ROW_STAGGER, ROW_DUR = 0.06, 0.5  # seconds
+MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--src", default=str(ROOT / "source-prepped.png"))
     ap.add_argument("--out", default=str(ROOT / "ascii-portrait.svg"))
-    ap.add_argument("--cols", type=int, default=100)
+    ap.add_argument("--cols", type=int, default=110)
     ap.add_argument("--invert", action="store_true", help="dark pixels -> sparse glyphs")
     args = ap.parse_args()
+
+    profile = json.loads((ROOT / "profile.json").read_text())
+    handle = profile.get("handle") or profile["username"]
+    name = profile.get("name") or handle
 
     img = Image.open(args.src).convert("L")
     w, h = img.size
@@ -42,13 +52,22 @@ def main() -> int:
     lines = ["".join(RAMP[i] for i in row) for row in idx]
 
     text_w, text_h = cols * CW, rows * LH
-    total_w, total_h = text_w + 2 * PAD, text_h + 2 * PAD
+    avail_w = W - 2 * PAD
+    avail_h = H - BAR_TOP - FOOT_H - 2 * PAD
+    s = min(avail_w / text_w, avail_h / text_h)
+    tx = (W - text_w * s) / 2
+    ty = BAR_TOP + PAD + (avail_h - text_h * s) / 2
 
     parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {total_w:g} {total_h:g}" '
-        f'width="{total_w:g}" height="{total_h:g}" role="img" aria-label="ASCII portrait">',
-        f'<rect width="{total_w:g}" height="{total_h:g}" rx="12" fill="{BG}" stroke="{BORDER}"/>',
-        f'<g transform="translate({PAD},{PAD})" fill="{FG}" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="{FONT}">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="ASCII portrait">',
+        f'<rect width="{W}" height="{H}" rx="16" fill="{BG}" stroke="{BORDER}" stroke-width="2"/>',
+        f'<path d="M0 {BAR_TOP}H{W}" stroke="{BORDER}" stroke-width="2"/>',
+        f'<path d="M0 {H - FOOT_H}H{W}" stroke="{BORDER}" stroke-width="2"/>',
+        '<circle cx="26" cy="22" r="6" fill="#ff5f56"/><circle cx="46" cy="22" r="6" fill="#ffbd2e"/><circle cx="66" cy="22" r="6" fill="#27c93f"/>',
+        f'<text x="{W/2}" y="28" text-anchor="middle" fill="{DIM}" font-size="15" font-family="{MONO}">{escape(handle)}@github: ~$ ./portrait.sh</text>',
+        f'<text x="{PAD}" y="{H - 19}" font-size="16" font-family="{MONO}" fill="{DIM}">{escape(handle)}@github:~$ whoami '
+        f'<tspan fill="#e6edf3" font-weight="700">{escape(name)}</tspan></text>',
+        f'<g transform="translate({tx:.2f},{ty:.2f}) scale({s:.4f})" fill="{FG}" font-family="{MONO}" font-size="{FONT}">',
     ]
     for i, line in enumerate(lines):
         if not line.strip():
@@ -56,19 +75,16 @@ def main() -> int:
         y = i * LH
         begin = i * ROW_STAGGER
         end = begin + ROW_DUR
-        # 1) the text, always present
         parts.append(
             f'<text x="0" y="{y + LH - 2:g}" textLength="{text_w:g}" lengthAdjust="spacing" '
             f'xml:space="preserve" style="white-space:pre">{escape(line)}</text>'
         )
-        # 2) the cover: fully covers the row at first, then its left edge slides right
         parts.append(
             f'<rect x="0" y="{y:g}" width="{text_w:g}" height="{LH:g}" fill="{BG}">'
             f'<animate attributeName="x" from="0" to="{text_w:g}" dur="{ROW_DUR}s" begin="{begin:.2f}s" fill="freeze"/>'
             f'<animate attributeName="width" from="{text_w:g}" to="0" dur="{ROW_DUR}s" begin="{begin:.2f}s" fill="freeze"/>'
             f"</rect>"
         )
-        # 3) the block cursor riding the reveal edge, gone when the row is done
         parts.append(
             f'<rect x="0" y="{y:g}" width="{CW:g}" height="{LH - 1:g}" opacity="0">'
             f'<set attributeName="opacity" to="1" begin="{begin:.2f}s"/>'
@@ -79,10 +95,8 @@ def main() -> int:
 
     Path(args.out).write_text("\n".join(parts), encoding="utf-8")
     (ROOT / "data").mkdir(exist_ok=True)
-    (ROOT / "data" / "portrait_meta.json").write_text(
-        json.dumps({"width": total_w, "height": total_h}), encoding="utf-8"
-    )
-    print(f"wrote {args.out} ({cols}x{rows} chars)")
+    (ROOT / "data" / "portrait_meta.json").write_text(json.dumps({"width": W, "height": H}), encoding="utf-8")
+    print(f"wrote {args.out} ({cols}x{rows} chars, scale {s:.2f}x, canvas {W}x{H})")
     return 0
 
 
