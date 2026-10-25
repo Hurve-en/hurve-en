@@ -1,0 +1,15 @@
+{
+  "title": "about.sh",
+  "tiles": [
+    { "label": "$ studying",   "big": "3rd",          "unit": "year",      "sub": "Computer Science" },
+    { "label": "$ aiming for", "big": "Senior",       "unit": "",          "sub": "full-stack engineer" },
+    { "label": "$ focus",      "big": "Web + mobile", "unit": "",          "sub": "backend and databases" },
+    { "label": "$ auth",       "big": "JWT",          "unit": "",          "sub": "role-based middleware" },
+    { "label": "$ languages",  "big": "5",            "unit": "languages", "sub": "TS · JS · PHP · Python · C++" },
+    { "label": "$ databases",  "big": "2",            "unit": "engines",   "sub": "PostgreSQL · MySQL" }
+  ],
+  "list": {
+    "label": "$ learning",
+    "items": ["React", "Next.js", "Expo", "AI Engineering"]
+  }
+}

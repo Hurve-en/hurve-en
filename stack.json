@@ -1,0 +1,10 @@
+{
+  "title": "stack",
+  "groups": [
+    { "label": "Languages",         "color": "#58a6ff", "items": ["TypeScript", "JavaScript", "PHP", "Python", "C++"] },
+    { "label": "Frontend & mobile", "color": "#3fb950", "items": ["Next.js", "Expo", "Figma"] },
+    { "label": "Backend & data",    "color": "#bc8cff", "items": ["Node/Express", "Supabase", "PostgreSQL", "MySQL", "Drizzle", "Prisma", "JWT", "RBAC"] },
+    { "label": "Tooling",           "color": "#d29922", "items": ["Docker", "DBeaver"] },
+    { "label": "Learning",          "color": "#f778ba", "items": ["React", "Next.js", "Expo", "AI Engineering"] }
+  ]
+}
